@@ -1,25 +1,22 @@
 // import mongoose from "mongoose";
-import express from "express";
-// import { DB_NAME } from "./constants.js";
-import dotenv from "dotenv"
-import connectDB from "./db/indexx.js";
-let app=express();
+// index.js
 
-dotenv.config({
-    path:'./.env'
-})
-connectDB().then(()=>{
-    app.on("error",(error)=>{
-        console.log(`error is : ${error}`)
-        throw error
-    })
-    app.listen(process.env.PORT || 8000,()=>{
-console.log(`port is running in ${process.env.PORT}`)
-    })
-})
-.catch((err)=>{
-    console.log(`error is : ${err}`)
-})
+import dotenv from "dotenv";
+import connectDB from "./db/indexx.js";
+import { app } from "./app.js";  // ✅ Using the configured app
+
+dotenv.config({ path: "./.env" });
+
+connectDB()
+  .then(() => {
+    app.listen(process.env.PORT || 5000, () => {
+      console.log(`✅ Server running on port ${process.env.PORT || 5000}`);
+    });
+  })
+  .catch((err) => {
+    console.error("❌ DB connection error:", err);
+  });
+
 
 // const app = express();
 

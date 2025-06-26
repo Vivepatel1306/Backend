@@ -16,7 +16,7 @@ export default async function connectDB()
             })
         }
         catch (error) {
-            console.log(`error is ${error}`);
+            console.log(`error is in : ${error}`);
             throw error
         }
     
